@@ -1,0 +1,11 @@
+type,series,model,diagonal,screen type,country,price
+Telephone,S-10,Samsung,none,QLED,none,200
+Telephone,14 Pro Max,Apple,none,OLED,none,1400
+Telephone,11S,Xiaomi,none,AMOLED,none,210
+Telephone,9SE,Huawei,none,IPS,none,220
+Telephone,V40,ZTE,none,AMOLED,none,200
+Television,RTI-14,none,25,LED,China,1500
+Television,Smart,none,32,IPS,China,300
+Television,QLED-4K,none,50,QLED,China,1000
+Television,UHD,none,50,Direct-LED,China,420
+Television,Smart,none,32,IPS,China,175
