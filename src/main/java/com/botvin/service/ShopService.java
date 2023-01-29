@@ -6,10 +6,7 @@ import com.botvin.util.Time;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -50,12 +47,24 @@ public class ShopService {
         orders.forEach(System.out::println);
     }
 
-    public void numberOfGoodsSold() {
-        List<Order> numberOfGoodsSold = orderListRepository.getAll().stream()
-                .filter(o -> o.getGoodsList().contains(DeviceType.TELEVISION))
-                .collect(Collectors.toList());
-        numberOfGoodsSold.forEach(System.out::println);
+    // К-сть проданих товарів за категоріями (Telephone/Television)
+    public Map<Object, Long> numberOfGoodsSold() {
+        Map<Object, Long> collect = orderListRepository.getAll().stream()
+                .flatMap(list -> list.getGoodsList().stream())
+                .collect(Collectors.groupingBy(
+                        x -> x.getDeviceType(),
+                        Collectors.counting()
+                ));
+        return collect;
     }
+
+    // Суму найменшого чека та інформацію про покупця
+    /*public Map<Object, Long> minSumAndCustomerInfo() {
+        Map<Object, Long> collect = orderListRepository.getAll().stream()
+
+    }*/
+
+
 
 
 }

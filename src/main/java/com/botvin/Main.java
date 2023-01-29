@@ -1,5 +1,6 @@
 package com.botvin;
 
+import com.botvin.model.Goods;
 import com.botvin.model.Order;
 import com.botvin.model.Telephone;
 import com.botvin.model.Television;
@@ -11,6 +12,7 @@ import com.botvin.service.ShopService;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -42,7 +44,10 @@ public class Main {
 
         System.out.println();
 
-        shopService.numberOfGoodsSold();
+        Map<Object, Long> map = shopService.numberOfGoodsSold();
+        for (Map.Entry<Object, Long> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
 
 
 
