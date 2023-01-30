@@ -19,9 +19,10 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("Enter limit: ");
-        int limit = scanner.nextInt();
+        int limit = scanner.nextInt();*/
+        int limit = 1000;
 
         FileReadService fileReadService = new FileReadService();
 
@@ -33,21 +34,36 @@ public class Main {
         List<Television> televisionList = fileReadService.televisionList(list);
         //televisionList.forEach(System.out::println);
 
-        System.out.println();
+        System.out.println("*".repeat(50) + " Generated orders: " + "*".repeat(50));
 
         ShopService shopService = new ShopService(new OrderListRepository());
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 15; i++) { // i < 15 -> generate 15 orders
             Order order = shopService.createOrder(telephoneList, televisionList, limit);
             shopService.save(order);
         }
         shopService.printAll();
 
-        System.out.println();
+        System.out.println("*".repeat(50) + " 1-st method's result: " + "*".repeat(50));
 
         Map<Object, Long> map = shopService.numberOfGoodsSold();
         for (Map.Entry<Object, Long> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue().toString());
         }
+
+        System.out.println("*".repeat(50) + " 3-rd method's result: " + "*".repeat(50));
+
+        double sumOfAllPurchases = shopService.totalOfAllPurchases();
+        System.out.println(sumOfAllPurchases + " - total of all purchases");
+
+        System.out.println("*".repeat(50) + " 4-th method's result: " + "*".repeat(50));
+
+        long checks = shopService.numberOfRetailChecks();
+        System.out.println(checks + " - the number of checks with the retail category");
+
+        System.out.println("*".repeat(50) + " 7-th method's result: " + "*".repeat(50));
+
+        List<Order> lowAgeOrders = shopService.lowAgeOrders();
+        lowAgeOrders.forEach(System.out::println);
 
 
 
